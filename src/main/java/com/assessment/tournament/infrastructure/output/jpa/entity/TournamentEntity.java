@@ -2,13 +2,19 @@ package com.assessment.tournament.infrastructure.output.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "tournament")
-@Data
-public class TournamentEntity {
+@Getter
+@Setter
+@NoArgsConstructor
+public class TournamentEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
