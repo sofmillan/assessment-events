@@ -9,7 +9,7 @@ env:
   SECRET_KEY: ${{ secrets.SECRET_KEY }}
   #  USER_POOL_ID: ${{ secrets.USER_POOL_ID }}
   #  CLIENT_ID: ${{ secrets.CLIENT_ID }}
-  #  REGION: ${{ secrets.REGION }}
+  REGION: ${{ secrets.REGION }}
   #  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
 #  ECR_REPOSITORY_NAME: ${{ secrets.ECR_REPOSITORY_NAME }}
   ECR_REPOSITORY_LINK: ${{ secrets.ECR_REPOSITORY_LINK }}
