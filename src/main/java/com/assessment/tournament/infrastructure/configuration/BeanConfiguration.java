@@ -2,12 +2,16 @@ package com.assessment.tournament.infrastructure.configuration;
 
 import com.assessment.tournament.domain.api.CategoryServicePort;
 import com.assessment.tournament.domain.api.IdentityResolver;
+import com.assessment.tournament.domain.api.TicketServicePort;
 import com.assessment.tournament.domain.api.TournamentServicePort;
 import com.assessment.tournament.domain.spi.CategoryPersistencePort;
+import com.assessment.tournament.domain.spi.TicketPersistencePort;
 import com.assessment.tournament.domain.spi.TournamentPersistencePort;
 import com.assessment.tournament.domain.usecase.CategoryUseCase;
+import com.assessment.tournament.domain.usecase.TicketUseCase;
 import com.assessment.tournament.domain.usecase.TournamentUseCase;
 import com.assessment.tournament.infrastructure.output.jpa.adapter.CategoryJpaAdapter;
+import com.assessment.tournament.infrastructure.output.jpa.adapter.TicketJpaAdapter;
 import com.assessment.tournament.infrastructure.output.jpa.adapter.TournamentJpaAdapter;
 import com.assessment.tournament.infrastructure.output.jpa.mapper.CategoryEntityMapper;
 import com.assessment.tournament.infrastructure.output.jpa.mapper.TournamentEntityMapper;
@@ -50,5 +54,15 @@ public class BeanConfiguration {
     @Bean
     public IdentityResolver identityResolver(){
         return new JwtClaimsResolver();
+    }
+
+    @Bean
+    public TicketPersistencePort ticketPersistencePort(){
+        return new TicketJpaAdapter();
+    }
+
+    @Bean
+    public TicketServicePort ticketServicePort(){
+        return new TicketUseCase(ticketPersistencePort());
     }
 }
