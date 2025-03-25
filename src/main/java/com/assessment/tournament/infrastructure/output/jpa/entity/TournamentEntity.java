@@ -22,13 +22,13 @@ public class TournamentEntity {
     private String userId;
     private Double ticketPrice;
     private Integer remainingCapacity;
-    private Boolean isFree;
+    private Boolean free;
 
     public Boolean getFree() {
-        return isFree;
+        return free;
     }
 
     public void setFree(Boolean free) {
-        isFree = free;
+        free = free;
     }
 }
