@@ -17,11 +17,18 @@ public class TournamentEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
+
+    @Column(name = "start_date", columnDefinition = "DATE")
     private LocalDate startDate;
+
+
+    @Column(name = "end_date", columnDefinition = "DATE")
     private LocalDate endDate;
     private String userId;
     private Double ticketPrice;
     private Integer remainingCapacity;
+
+    @Column(name = "free", columnDefinition = "BOOLEAN")
     private Boolean free;
 
     public Boolean getFree() {
@@ -29,6 +36,6 @@ public class TournamentEntity {
     }
 
     public void setFree(Boolean free) {
-        free = free;
+        this.free = free;
     }
 }
