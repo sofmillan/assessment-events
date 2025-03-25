@@ -3,7 +3,6 @@ package com.assessment.tournament.domain.usecase;
 import com.assessment.tournament.domain.api.TournamentServicePort;
 import com.assessment.tournament.domain.model.Tournament;
 import com.assessment.tournament.domain.spi.TournamentPersistencePort;
-import com.assessment.tournament.infrastructure.output.jpa.entity.TournamentEntity;
 
 public class TournamentUseCase implements TournamentServicePort {
 

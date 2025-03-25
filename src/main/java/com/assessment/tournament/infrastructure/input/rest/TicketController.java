@@ -1,7 +1,6 @@
 package com.assessment.tournament.infrastructure.input.rest;
 
 import com.assessment.tournament.application.dto.TicketRequestDto;
-import com.assessment.tournament.application.dto.TournamentRequestDto;
 import com.assessment.tournament.application.handler.TicketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
