@@ -1,0 +1,119 @@
+{
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:026090534078:task-definition/assessment-events:1",
+  "containerDefinitions": [
+    {
+      "name": "assessment-events",
+      "image": "026090534078.dkr.ecr.us-east-1.amazonaws.com/event-registry:1.0.0",
+      "cpu": 0,
+      "portMappings": [
+        {
+          "name": "assessment-events-8081-tcp",
+          "containerPort": 8081,
+          "hostPort": 8081,
+          "protocol": "tcp",
+          "appProtocol": "http"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "environmentFiles": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "secrets": [
+        {
+          "name": "ACCESS_KEY",
+          "valueFrom": "arn:aws:ssm:us-east-1:026090534078:parameter/ACCESS_KEY"
+        },
+        {
+          "name": "SECRET_KEY",
+          "valueFrom": "arn:aws:ssm:us-east-1:026090534078:parameter/SECRET_KEY"
+        },
+        {
+          "name": "DATABASE_PASSWORD",
+          "valueFrom": "arn:aws:ssm:us-east-1:026090534078:parameter/DATABASE_PASSWORD"
+        },
+        {
+          "name": "DATABASE_URL",
+          "valueFrom": "arn:aws:ssm:us-east-1:026090534078:parameter/DATABASE_URL"
+        },
+        {
+          "name": "DATABASE_USERNAME",
+          "valueFrom": "arn:aws:ssm:us-east-1:026090534078:parameter/DATABASE_USERNAME"
+        }
+      ],
+      "ulimits": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/assessment-events",
+          "mode": "non-blocking",
+          "awslogs-create-group": "true",
+          "max-buffer-size": "25m",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        },
+        "secretOptions": []
+      },
+      "systemControls": []
+    }
+  ],
+  "family": "assessment-events",
+  "taskRoleArn": "arn:aws:iam::026090534078:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::026090534078:role/ecsTaskExecutionRole",
+  "networkMode": "awsvpc",
+  "revision": 1,
+  "volumes": [],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "ecs.capability.execution-role-awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.task-iam-role"
+    },
+    {
+      "name": "ecs.capability.execution-role-ecr-pull"
+    },
+    {
+      "name": "ecs.capability.secrets.ssm.environment-variables"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+    },
+    {
+      "name": "ecs.capability.task-eni"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EC2",
+    "FARGATE"
+  ],
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "cpu": "1024",
+  "memory": "3072",
+  "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "registeredAt": "2025-03-25T03:34:20.559Z",
+  "registeredBy": "arn:aws:iam::026090534078:root",
+  "tags": []
+}

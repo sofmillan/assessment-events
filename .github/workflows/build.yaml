@@ -100,20 +100,20 @@ jobs:
         run: |
           docker build -t ${{env.ECR_REPOSITORY_LINK}}:1.0.0 .
           docker push ${{ env.ECR_REPOSITORY_LINK }}:1.0.0
-#          echo "image=${{ env.ECR_REPOSITORY_LINK }}:1.0.0" >> $GITHUB_OUTPUT
-#
-#      - name: Fill in the new image ID in the Amazon ECS task definition
-#        id: task-def
-#        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
-#        with:
-#          task-definition: app-task-definition.json
-#          container-name: assessment-users
-#          image: ${{ steps.build-image.outputs.image }}
-#
-#      - name: Deploy Amazon ECS task definition
-#        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
-#        with:
-#          task-definition: ${{ steps.task-def.outputs.task-definition }}
-#          service: users-assessment
-#          cluster: assessment
-#          wait-for-service-stability: true
+          echo "image=${{ env.ECR_REPOSITORY_LINK }}:1.0.0" >> $GITHUB_OUTPUT
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+        with:
+          task-definition: app-task-definition.json
+          container-name: assessment-events
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: events-assessment
+          cluster: assessment
+          wait-for-service-stability: true
