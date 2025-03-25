@@ -1,4 +1,4 @@
-name: SonarCloud
+name: Events Service CI/CD
 on:
   push:
     branches:
