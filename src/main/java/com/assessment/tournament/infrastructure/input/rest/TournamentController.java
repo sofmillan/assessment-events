@@ -20,6 +20,7 @@ import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Base64;
+import java.util.List;
 
 @RestController
 @RequestMapping("/events")
@@ -35,8 +36,8 @@ public class TournamentController {
     }
 
     @PostMapping
-    public void category(@RequestBody CategoryEntity category){
-        categoryRepository.save(category);
+    public List<CategoryEntity> category(){
+        return categoryRepository.findAll();
     }
 
 
