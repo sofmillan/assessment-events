@@ -14,8 +14,10 @@ import com.assessment.tournament.infrastructure.output.jpa.adapter.CategoryJpaAd
 import com.assessment.tournament.infrastructure.output.jpa.adapter.TicketJpaAdapter;
 import com.assessment.tournament.infrastructure.output.jpa.adapter.TournamentJpaAdapter;
 import com.assessment.tournament.infrastructure.output.jpa.mapper.CategoryEntityMapper;
+import com.assessment.tournament.infrastructure.output.jpa.mapper.TicketEntityMapper;
 import com.assessment.tournament.infrastructure.output.jpa.mapper.TournamentEntityMapper;
 import com.assessment.tournament.infrastructure.output.jpa.repository.CategoryRepository;
+import com.assessment.tournament.infrastructure.output.jpa.repository.TicketRepository;
 import com.assessment.tournament.infrastructure.output.jpa.repository.TournamentRepository;
 import com.assessment.tournament.infrastructure.security.JwtClaimsResolver;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,8 @@ public class BeanConfiguration {
     private final CategoryEntityMapper categoryEntityMapper;
     private final TournamentRepository tournamentRepository;
     private final TournamentEntityMapper tournamentEntityMapper;
+    private final TicketEntityMapper ticketEntityMapper;
+    private final TicketRepository ticketRepository;
 
     @Bean
     public CategoryPersistencePort categoryPersistencePort(){
@@ -58,7 +62,7 @@ public class BeanConfiguration {
 
     @Bean
     public TicketPersistencePort ticketPersistencePort(){
-        return new TicketJpaAdapter();
+        return new TicketJpaAdapter(ticketRepository, ticketEntityMapper);
     }
 
     @Bean

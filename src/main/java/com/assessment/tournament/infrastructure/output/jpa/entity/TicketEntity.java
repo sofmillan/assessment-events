@@ -1,6 +1,5 @@
 package com.assessment.tournament.infrastructure.output.jpa.entity;
 
-import com.assessment.tournament.domain.model.Tournament;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,6 +13,9 @@ public class TicketEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userId;
+
+    @ManyToOne
+    @JoinColumn(name = "tournament_id")
     private TournamentEntity tournament;
     private Double totalPrice;
     private LocalDateTime purchaseDate;

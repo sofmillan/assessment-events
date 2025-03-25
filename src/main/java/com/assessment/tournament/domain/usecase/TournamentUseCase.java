@@ -1,5 +1,6 @@
 package com.assessment.tournament.domain.usecase;
 
+import com.assessment.tournament.domain.exception.FreeTournamentLimitException;
 import com.assessment.tournament.domain.api.TournamentServicePort;
 import com.assessment.tournament.domain.model.Tournament;
 import com.assessment.tournament.domain.spi.TournamentPersistencePort;
@@ -8,14 +9,15 @@ public class TournamentUseCase implements TournamentServicePort {
 
     private final TournamentPersistencePort tournamentPersistencePort;
 
+
     public TournamentUseCase(TournamentPersistencePort tournamentPersistencePort) {
         this.tournamentPersistencePort = tournamentPersistencePort;
     }
 
     @Override
     public Tournament save(Tournament tournament) {
-        if(tournamentPersistencePort.getByUserId(tournament.getUserId()).stream().filter(Tournament::getFree).count()<=2){
-            throw new RuntimeException("Cannot create more free tournaments");
+        if(tournamentPersistencePort.getByUserId(tournament.getUserId()).stream().filter(Tournament::getFree).count()>=2){
+            throw new FreeTournamentLimitException("User cannot create more free tournaments");
         }
 
         tournament.setRemainingCapacity(tournament.getCategory().getCapacity());
@@ -24,6 +26,6 @@ public class TournamentUseCase implements TournamentServicePort {
 
     @Override
     public Tournament findById(Long id) {
-        return null;
+        return tournamentPersistencePort.getById(id);
     }
 }
