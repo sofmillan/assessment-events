@@ -2,6 +2,7 @@ package com.assessment.tournament.infrastructure.output.jpa.adapter;
 
 import com.assessment.tournament.domain.model.Category;
 import com.assessment.tournament.domain.spi.CategoryPersistencePort;
+import com.assessment.tournament.infrastructure.exception.DataNotFoundException;
 import com.assessment.tournament.infrastructure.output.jpa.mapper.CategoryEntityMapper;
 import com.assessment.tournament.infrastructure.output.jpa.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,6 @@ public class CategoryJpaAdapter implements CategoryPersistencePort {
     private final CategoryEntityMapper categoryEntityMapper;
     @Override
     public Category findById(Long id) {
-        return categoryEntityMapper.toModel(categoryRepository.findById(id).orElseThrow(RuntimeException::new));
+        return categoryEntityMapper.toModel(categoryRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Category not found")));
     }
 }

@@ -12,8 +12,14 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class ControllerAdvisor {
     @ExceptionHandler(FreeTournamentLimitException.class)
-    public ResponseEntity<ErrorResponse> resourceAlreadyExist(FreeTournamentLimitException e){
+    public ResponseEntity<ErrorResponse> freeTournamentLimitException(FreeTournamentLimitException e){
         ErrorResponse errorResponse = new ErrorResponse(e.getMessage(), LocalDateTime.now(), HttpStatus.CONFLICT, 409);
-        return ResponseEntity.status(HttpStatusCode.valueOf(409)).body(errorResponse);
+        return ResponseEntity.status(409).body(errorResponse);
+    }
+
+    @ExceptionHandler(DataNotFoundException.class)
+    public ResponseEntity<ErrorResponse> dataNotFoundException(DataNotFoundException e){
+        ErrorResponse errorResponse = new ErrorResponse(e.getMessage(), LocalDateTime.now(), HttpStatus.NOT_FOUND, 404);
+        return ResponseEntity.status(404).body(errorResponse);
     }
 }

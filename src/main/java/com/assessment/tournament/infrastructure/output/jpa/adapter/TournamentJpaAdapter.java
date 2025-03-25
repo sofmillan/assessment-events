@@ -2,6 +2,7 @@ package com.assessment.tournament.infrastructure.output.jpa.adapter;
 
 import com.assessment.tournament.domain.model.Tournament;
 import com.assessment.tournament.domain.spi.TournamentPersistencePort;
+import com.assessment.tournament.infrastructure.exception.DataNotFoundException;
 import com.assessment.tournament.infrastructure.output.jpa.mapper.TournamentEntityMapper;
 import com.assessment.tournament.infrastructure.output.jpa.repository.TournamentRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,6 @@ public class TournamentJpaAdapter implements TournamentPersistencePort {
 
     @Override
     public Tournament getById(Long id) {
-        return tournamentEntityMapper.toModel(tournamentRepository.findById(id).orElseThrow(RuntimeException::new));
+        return tournamentEntityMapper.toModel(tournamentRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Tournament not found")));
     }
 }
