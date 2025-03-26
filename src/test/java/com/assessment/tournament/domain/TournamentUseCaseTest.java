@@ -71,19 +71,35 @@ class TournamentUseCaseTest {
     @Test
     void shouldThrowExceptionWhenUserHasTwoFreeTournaments() {
         // Arrange
-        Tournament freeTournament = new Tournament();
-        freeTournament.setName("GRL GVNG");
-        freeTournament.setUserId(userId);
-        freeTournament.setIsFree(true);
-        freeTournament.setCategory(category);
+        Tournament existingFreeTournament = new Tournament();
+        existingFreeTournament.setName("GRL GVNG");
+        existingFreeTournament.setUserId(userId);
+        existingFreeTournament.setIsFree(true);
+        existingFreeTournament.setCategory(category);
 
-        List<Tournament> existingFreeTournaments = List.of(freeTournament, freeTournament);
+        List<Tournament> existingFreeTournaments = List.of(existingFreeTournament, existingFreeTournament);
 
         when(tournamentPersistencePort.getByUserId(userId)).thenReturn(existingFreeTournaments);
 
         // Act & Assert
         assertThrows(FreeTournamentLimitException.class, () -> tournamentUseCase.save(tournament));
         verify(tournamentPersistencePort, never()).save(any(Tournament.class));
+    }
+
+    @Test
+    void shouldSavePaidTournamentWhenUserHasTwoFreeTournaments() {
+        // Arrange
+
+        tournament.setIsFree(false);
+        tournament.setTicketPrice(1.00);
+
+        when(tournamentPersistencePort.save(any(Tournament.class))).thenReturn(tournament);
+        //Act
+        Tournament result = tournamentUseCase.save(tournament);
+        // Assert
+        assertNotNull(result);
+        assertEquals(tournament.getIsFree(), result.getIsFree());
+        verify(tournamentPersistencePort).save(any(Tournament.class));
     }
 
     @Test

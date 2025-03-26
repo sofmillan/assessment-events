@@ -10,9 +10,6 @@ public class Ticket {
     private LocalDateTime purchaseDate;
     private String code;
 
-    public Ticket() {
-    }
-
     public Long getId() {
         return id;
     }
