@@ -9,4 +9,5 @@ public interface TournamentServicePort {
     Tournament findById(Long id);
     Tournament updateRemainingCapacity(Tournament tournament);
     List<Tournament> findByUserId(String userId);
+    List<Tournament> getAll();
 }

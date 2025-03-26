@@ -1,5 +1,6 @@
 package com.assessment.tournament.application.handler;
 
+import com.assessment.tournament.application.dto.DetailedTournamentDto;
 import com.assessment.tournament.application.dto.TournamentListResponse;
 import com.assessment.tournament.application.dto.TournamentRequestDto;
 import com.assessment.tournament.application.dto.TournamentResponseDto;
@@ -34,9 +35,31 @@ public class TournamentHandlerImpl implements TournamentHandler{
     }
 
     @Override
-    public TournamentListResponse getTournamentsByUserId(String token) {
+    public TournamentListResponse getTournamentsByUserId(boolean createdByMe, String token) {
+        List<TournamentResponseDto> tournaments = createdByMe
+                ? getUserTournaments(token)
+                : getAllTournaments();
+
+        return new TournamentListResponse(tournaments);
+    }
+
+    @Override
+    public DetailedTournamentDto getTournamentById(Long id) {
+        return tournamentDtoMapper.toDetailedResponseDto(tournamentServicePort.findById(id));
+    }
+
+    private List<TournamentResponseDto> getUserTournaments(String token) {
         String userId = identityResolver.getUserIdFromToken(token);
-        List<TournamentResponseDto> list = tournamentServicePort.findByUserId(userId).stream().map(tournamentDtoMapper::toResponseDto).toList();
-        return new TournamentListResponse(list);
+        return tournamentServicePort.findByUserId(userId)
+                .stream()
+                .map(tournamentDtoMapper::toResponseDto)
+                .toList();
+    }
+
+    private List<TournamentResponseDto> getAllTournaments() {
+        return tournamentServicePort.getAll()
+                .stream()
+                .map(tournamentDtoMapper::toResponseDto)
+                .toList();
     }
 }

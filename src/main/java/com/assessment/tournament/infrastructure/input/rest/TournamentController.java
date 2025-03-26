@@ -1,5 +1,6 @@
 package com.assessment.tournament.infrastructure.input.rest;
 
+import com.assessment.tournament.application.dto.DetailedTournamentDto;
 import com.assessment.tournament.application.dto.TournamentListResponse;
 import com.assessment.tournament.application.dto.TournamentRequestDto;
 import com.assessment.tournament.application.dto.TournamentResponseDto;
@@ -24,17 +25,13 @@ public class TournamentController {
        return tournamentHandler.saveTournament(tournamentRequestDto, token);
     }
 
-    @GetMapping("/tournaments/me")
-    public TournamentListResponse getTournamentsByUser(@RequestHeader(name = "Authorization") String token){
-        return tournamentHandler.getTournamentsByUserId(token);
+    @GetMapping("/tournaments")
+    public TournamentListResponse getTournamentsByUser(@RequestParam(required = false, defaultValue = "false") boolean createdByMe, @RequestHeader(name = "Authorization") String token){
+        return tournamentHandler.getTournamentsByUserId(createdByMe, token);
     }
 
-    @PostMapping
-    public List<CategoryEntity> category(){
-        return categoryRepository.findAll();
+    @GetMapping("/tournaments/{idTournament}")
+    public DetailedTournamentDto getTournamentById(@PathVariable Long idTournament){
+        return tournamentHandler.getTournamentById(idTournament);
     }
-
-
-
-
 }

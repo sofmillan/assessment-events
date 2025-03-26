@@ -15,13 +15,17 @@ public class TournamentJpaAdapter implements TournamentPersistencePort {
     private final TournamentEntityMapper tournamentEntityMapper;
     @Override
     public Tournament save(Tournament tournament) {
-
         return tournamentEntityMapper.toModel(tournamentRepository.save(tournamentEntityMapper.toEntity(tournament)));
     }
 
     @Override
     public List<Tournament> getByUserId(String userId) {
         return tournamentRepository.findByUserId(userId).stream().map(tournamentEntityMapper::toModel).toList();
+    }
+
+    @Override
+    public List<Tournament> getAll() {
+        return tournamentRepository.findAll().stream().map(tournamentEntityMapper::toModel).toList();
     }
 
     @Override

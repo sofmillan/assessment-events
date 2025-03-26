@@ -43,4 +43,9 @@ public class TournamentUseCase implements TournamentServicePort {
         return tournamentPersistencePort.getByUserId(userId);
     }
 
+    @Override
+    public List<Tournament> getAll() {
+        return tournamentPersistencePort.getAll();
+    }
+
 }
