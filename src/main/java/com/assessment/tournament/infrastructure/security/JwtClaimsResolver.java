@@ -20,14 +20,16 @@ public class JwtClaimsResolver implements IdentityResolver {
     public String getUserIdFromToken(String token)  {
 
         Jws<Claims> claims;
+
         try {
             claims = Jwts.parser()
                     .verifyWith(getPublicKeyFromJson())
                     .build()
                     .parseSignedClaims(token);
-        } catch (Exception e) {
+        } catch (JsonProcessingException | NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }
+
 
         return claims.getPayload().get("sub").toString();
     }
