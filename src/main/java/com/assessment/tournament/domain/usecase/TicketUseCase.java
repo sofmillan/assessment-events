@@ -6,7 +6,6 @@ import com.assessment.tournament.domain.exception.TournamentSoldOutException;
 import com.assessment.tournament.domain.model.Ticket;
 import com.assessment.tournament.domain.model.Tournament;
 import com.assessment.tournament.domain.spi.TicketPersistencePort;
-import com.assessment.tournament.domain.spi.TournamentPersistencePort;
 
 public class TicketUseCase implements TicketServicePort {
     private final TicketPersistencePort ticketPersistencePort;
@@ -17,7 +16,6 @@ public class TicketUseCase implements TicketServicePort {
 
     }
 
-    //Añadir restricción sobre asientos restantes
     @Override
     public Ticket save(Ticket ticket) {
         Tournament tournament = ticket.getTournament();

@@ -1,7 +1,6 @@
 package com.assessment.tournament.infrastructure.output.jpa.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

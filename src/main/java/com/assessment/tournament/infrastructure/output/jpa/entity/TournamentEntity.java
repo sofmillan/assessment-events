@@ -35,11 +35,4 @@ public class TournamentEntity implements Serializable {
     @Column(name = "free", columnDefinition = "BOOLEAN")
     private Boolean isFree;
 
-/*    public Boolean getFree() {
-        return isFree;
-    }
-
-    public void setFree(Boolean free) {
-        this.isFree = free;
-    }*/
 }

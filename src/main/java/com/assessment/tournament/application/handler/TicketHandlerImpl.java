@@ -8,7 +8,6 @@ import com.assessment.tournament.domain.api.TicketServicePort;
 import com.assessment.tournament.domain.api.TournamentServicePort;
 import com.assessment.tournament.domain.model.Ticket;
 import com.assessment.tournament.domain.model.Tournament;
-import com.assessment.tournament.infrastructure.output.jpa.mapper.TicketEntityMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
