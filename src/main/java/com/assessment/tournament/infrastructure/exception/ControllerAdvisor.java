@@ -5,28 +5,50 @@ import com.assessment.tournament.domain.exception.TournamentSoldOutException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ControllerAdvisor {
     @ExceptionHandler(FreeTournamentLimitException.class)
     public ResponseEntity<ErrorResponse> freeTournamentLimitException(FreeTournamentLimitException e){
-        ErrorResponse errorResponse = new ErrorResponse(e.getMessage(), LocalDateTime.now(), HttpStatus.CONFLICT, 409);
+        ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.CONFLICT, 409, List.of(e.getMessage()));
         return ResponseEntity.status(409).body(errorResponse);
     }
 
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseEntity<ErrorResponse> dataNotFoundException(DataNotFoundException e){
-        ErrorResponse errorResponse = new ErrorResponse(e.getMessage(), LocalDateTime.now(), HttpStatus.NOT_FOUND, 404);
+        ErrorResponse errorResponse = new ErrorResponse( LocalDateTime.now(), HttpStatus.NOT_FOUND, 404, List.of(e.getMessage()));
         return ResponseEntity.status(404).body(errorResponse);
     }
 
     @ExceptionHandler(TournamentSoldOutException.class)
     public ResponseEntity<ErrorResponse> tournamentSoldOutException(TournamentSoldOutException e){
-        ErrorResponse errorResponse = new ErrorResponse(e.getMessage(), LocalDateTime.now(), HttpStatus.CONFLICT, 409);
+        ErrorResponse errorResponse = new ErrorResponse( LocalDateTime.now(), HttpStatus.CONFLICT, 409, List.of(e.getMessage()));
         return ResponseEntity.status(409).body(errorResponse);
+    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        List<String> errors = ex.getBindingResult().getAllErrors().stream()
+                .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage())
+                .collect(Collectors.toList());
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                LocalDateTime.now(),
+                HttpStatus.BAD_REQUEST,
+                400,
+                errors
+        );
+
+        return ResponseEntity.status(400).body(errorResponse);
     }
 }
