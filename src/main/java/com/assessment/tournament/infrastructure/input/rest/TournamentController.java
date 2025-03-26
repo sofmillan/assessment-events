@@ -1,6 +1,7 @@
 package com.assessment.tournament.infrastructure.input.rest;
 
 import com.assessment.tournament.application.dto.TournamentRequestDto;
+import com.assessment.tournament.application.dto.TournamentResponseDto;
 import com.assessment.tournament.application.handler.TournamentHandler;
 import com.assessment.tournament.infrastructure.output.jpa.entity.CategoryEntity;
 import com.assessment.tournament.infrastructure.output.jpa.repository.CategoryRepository;
@@ -18,8 +19,8 @@ public class TournamentController {
     private final CategoryRepository categoryRepository;
 
     @PostMapping("/tournaments")
-    public void save(@RequestBody TournamentRequestDto tournamentRequestDto, @RequestHeader(name = "Authorization") String token){
-        tournamentHandler.saveTournament(tournamentRequestDto, token);
+    public TournamentResponseDto save(@RequestBody TournamentRequestDto tournamentRequestDto, @RequestHeader(name = "Authorization") String token){
+       return tournamentHandler.saveTournament(tournamentRequestDto, token);
     }
 
     @PostMapping

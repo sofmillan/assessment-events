@@ -70,11 +70,11 @@ public class Tournament {
         this.ticketPrice = ticketPrice;
     }
 
-    public Boolean getFree() {
+    public Boolean getIsFree() {
         return isFree;
     }
 
-    public void setFree(Boolean free) {
+    public void setIsFree(Boolean free) {
         isFree = free;
     }
 

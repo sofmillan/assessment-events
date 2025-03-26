@@ -33,13 +33,13 @@ public class TournamentEntity implements Serializable {
     private Integer remainingCapacity;
 
     @Column(name = "free", columnDefinition = "BOOLEAN")
-    private Boolean free;
+    private Boolean isFree;
 
-    public Boolean getFree() {
-        return free;
+/*    public Boolean getFree() {
+        return isFree;
     }
 
     public void setFree(Boolean free) {
-        this.free = free;
-    }
+        this.isFree = free;
+    }*/
 }

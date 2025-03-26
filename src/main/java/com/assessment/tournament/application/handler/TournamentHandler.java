@@ -1,7 +1,8 @@
 package com.assessment.tournament.application.handler;
 
 import com.assessment.tournament.application.dto.TournamentRequestDto;
+import com.assessment.tournament.application.dto.TournamentResponseDto;
 
 public interface TournamentHandler {
-    void saveTournament(TournamentRequestDto tournamentRequestDto, String token);
+    TournamentResponseDto saveTournament(TournamentRequestDto tournamentRequestDto, String token);
 }

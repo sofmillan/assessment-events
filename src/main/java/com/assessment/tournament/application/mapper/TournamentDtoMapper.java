@@ -1,6 +1,7 @@
 package com.assessment.tournament.application.mapper;
 
 import com.assessment.tournament.application.dto.TournamentRequestDto;
+import com.assessment.tournament.application.dto.TournamentResponseDto;
 import com.assessment.tournament.domain.model.Tournament;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -11,4 +12,5 @@ import org.mapstruct.ReportingPolicy;
 )
 public interface TournamentDtoMapper {
     Tournament toModel(TournamentRequestDto tournamentRequestDto);
+    TournamentResponseDto toResponseDto(Tournament tournament);
 }
