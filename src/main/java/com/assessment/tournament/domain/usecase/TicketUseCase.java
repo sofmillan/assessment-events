@@ -23,9 +23,8 @@ public class TicketUseCase implements TicketServicePort {
             throw new TournamentSoldOutException("This tournament has no available capacity");
         }
         ticket.setTotalPrice(calculateTicketTotalPrice(ticket.getTournament().getTicketPrice()));
-        Ticket savedTicket = ticketPersistencePort.save(ticket);
 
-        return savedTicket;
+        return ticketPersistencePort.save(ticket);
     }
 
     private static Double calculateTicketTotalPrice(Double basePrice){

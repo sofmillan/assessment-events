@@ -36,7 +36,7 @@ public class ControllerAdvisor {
     public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult().getAllErrors().stream()
                 .map(error -> ((FieldError) error).getField() + ": " + error.getDefaultMessage())
-                .collect(Collectors.toList());
+                .toList();
 
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(),
