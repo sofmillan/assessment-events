@@ -13,7 +13,7 @@ public class DetailedTournamentDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private Double ticketPrice;
-    private Boolean isFree;
+    private boolean isFree;
     private Integer remainingCapacity;
     private Integer participants;
 }

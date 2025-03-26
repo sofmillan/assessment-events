@@ -10,7 +10,7 @@ public class Tournament {
     private LocalDate startDate;
     private LocalDate endDate;
     private Double ticketPrice;
-    private Boolean isFree;
+    private boolean isFree;
     private String userId;
     private Integer remainingCapacity;
 
@@ -70,11 +70,11 @@ public class Tournament {
         this.ticketPrice = ticketPrice;
     }
 
-    public Boolean getIsFree() {
+    public boolean getIsFree() {
         return isFree;
     }
 
-    public void setIsFree(Boolean free) {
+    public void setIsFree(boolean free) {
         isFree = free;
     }
 

@@ -26,13 +26,13 @@ public class TournamentRequestDto {
     private Double ticketPrice;
 
     @NotNull(message = "IsFree is required")
-    private Boolean isFree;
+    private boolean isFree;
 
-    public Boolean getFree() {
+    public boolean getFree() {
         return isFree;
     }
 
-    public void setFree(Boolean free) {
+    public void setFree(boolean free) {
         isFree = free;
     }
 }
