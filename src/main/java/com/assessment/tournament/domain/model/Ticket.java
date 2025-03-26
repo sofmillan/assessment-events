@@ -61,13 +61,5 @@ public class Ticket {
         this.code = code;
     }
 
-    public Ticket(Long id, String userId, Tournament tournament, Double totalPrice, LocalDateTime purchaseDate, String code) {
-        this.id = id;
-        this.userId = userId;
-        this.tournament = tournament;
-        this.totalPrice = totalPrice;
-        this.purchaseDate = purchaseDate;
-        this.code = code;
-    }
 }
 
