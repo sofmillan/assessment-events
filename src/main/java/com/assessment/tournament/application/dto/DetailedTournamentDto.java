@@ -1,6 +1,5 @@
 package com.assessment.tournament.application.dto;
 
-import com.assessment.tournament.domain.model.Category;
 import lombok.Data;
 
 import java.time.LocalDate;

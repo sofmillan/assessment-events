@@ -5,7 +5,6 @@ import com.assessment.tournament.domain.spi.TicketPersistencePort;
 import com.assessment.tournament.infrastructure.output.jpa.entity.TicketEntity;
 import com.assessment.tournament.infrastructure.output.jpa.mapper.TicketEntityMapper;
 import com.assessment.tournament.infrastructure.output.jpa.repository.TicketRepository;
-import com.assessment.tournament.infrastructure.output.jpa.repository.TournamentRepository;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;

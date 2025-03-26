@@ -16,8 +16,7 @@ import java.util.Base64;
 public class JwtClaimsResolver implements IdentityResolver {
     public String getUserIdFromToken(String token)  {
 
-        // Parse the JWT using parserBuilder()
-        Jws<Claims> claims = null;
+        Jws<Claims> claims;
         try {
             claims = Jwts.parser()
                     .verifyWith(getPublicKeyFromJson())

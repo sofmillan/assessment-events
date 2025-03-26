@@ -5,13 +5,11 @@ import com.assessment.tournament.application.dto.TournamentListResponse;
 import com.assessment.tournament.application.dto.TournamentRequestDto;
 import com.assessment.tournament.application.dto.TournamentResponseDto;
 import com.assessment.tournament.application.handler.TournamentHandler;
-import com.assessment.tournament.infrastructure.output.jpa.entity.CategoryEntity;
-import com.assessment.tournament.infrastructure.output.jpa.repository.CategoryRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/events")
