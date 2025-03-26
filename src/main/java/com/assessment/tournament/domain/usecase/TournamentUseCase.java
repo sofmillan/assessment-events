@@ -5,6 +5,8 @@ import com.assessment.tournament.domain.api.TournamentServicePort;
 import com.assessment.tournament.domain.model.Tournament;
 import com.assessment.tournament.domain.spi.TournamentPersistencePort;
 
+import java.util.List;
+
 public class TournamentUseCase implements TournamentServicePort {
 
     private final TournamentPersistencePort tournamentPersistencePort;
@@ -35,4 +37,10 @@ public class TournamentUseCase implements TournamentServicePort {
         tournament.setRemainingCapacity(tournament.getRemainingCapacity()-1);
         return tournamentPersistencePort.save(tournament);
     }
+
+    @Override
+    public List<Tournament> findByUserId(String userId) {
+        return tournamentPersistencePort.getByUserId(userId);
+    }
+
 }

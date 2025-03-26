@@ -1,5 +1,6 @@
 package com.assessment.tournament.infrastructure.input.rest;
 
+import com.assessment.tournament.application.dto.TournamentListResponse;
 import com.assessment.tournament.application.dto.TournamentRequestDto;
 import com.assessment.tournament.application.dto.TournamentResponseDto;
 import com.assessment.tournament.application.handler.TournamentHandler;
@@ -21,6 +22,11 @@ public class TournamentController {
     @PostMapping("/tournaments")
     public TournamentResponseDto save(@RequestBody TournamentRequestDto tournamentRequestDto, @RequestHeader(name = "Authorization") String token){
        return tournamentHandler.saveTournament(tournamentRequestDto, token);
+    }
+
+    @GetMapping("/tournaments/me")
+    public TournamentListResponse getTournamentsByUser(@RequestHeader(name = "Authorization") String token){
+        return tournamentHandler.getTournamentsByUserId(token);
     }
 
     @PostMapping
