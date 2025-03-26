@@ -26,5 +26,6 @@ public class TicketHandlerImpl implements TicketHandler{
         ticket.setUserId(userId);
         ticket.setTournament(tournament);
         ticketServicePort.save(ticket);
+        tournamentServicePort.updateRemainingCapacity(tournament);
     }
 }

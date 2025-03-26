@@ -26,7 +26,6 @@ public class TournamentEntity implements Serializable {
     @Column(name = "start_date", columnDefinition = "DATE")
     private LocalDate startDate;
 
-
     @Column(name = "end_date", columnDefinition = "DATE")
     private LocalDate endDate;
     private String userId;

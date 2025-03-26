@@ -2,20 +2,32 @@ package com.assessment.tournament.domain.usecase;
 
 import com.assessment.tournament.domain.api.TicketServicePort;
 import com.assessment.tournament.domain.constants.Constants;
+import com.assessment.tournament.domain.exception.TournamentSoldOutException;
 import com.assessment.tournament.domain.model.Ticket;
+import com.assessment.tournament.domain.model.Tournament;
 import com.assessment.tournament.domain.spi.TicketPersistencePort;
+import com.assessment.tournament.domain.spi.TournamentPersistencePort;
 
 public class TicketUseCase implements TicketServicePort {
     private final TicketPersistencePort ticketPersistencePort;
 
+
     public TicketUseCase(TicketPersistencePort ticketPersistencePort) {
         this.ticketPersistencePort = ticketPersistencePort;
+
     }
 
+    //Añadir restricción sobre asientos restantes
     @Override
     public Ticket save(Ticket ticket) {
+        Tournament tournament = ticket.getTournament();
+        if(tournament.getRemainingCapacity()==0){
+            throw new TournamentSoldOutException("This tournament has no available capacity");
+        }
         ticket.setTotalPrice(calculateTicketTotalPrice(ticket.getTournament().getTicketPrice()));
-        return ticketPersistencePort.save(ticket);
+        Ticket savedTicket = ticketPersistencePort.save(ticket);
+
+        return savedTicket;
     }
 
     private static Double calculateTicketTotalPrice(Double basePrice){

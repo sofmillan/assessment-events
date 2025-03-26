@@ -14,20 +14,6 @@ public class Tournament {
     private String userId;
     private Integer remainingCapacity;
 
-    public Tournament(Long id, String description, String name, Category category, LocalDate startDate, LocalDate endDate, Double ticketPrice, Boolean isFree) {
-        this.id = id;
-        this.description = description;
-        this.name = name;
-        this.category = category;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.ticketPrice = ticketPrice;
-        this.isFree = isFree;
-    }
-
-    public Tournament() {
-    }
-
     public Long getId() {
         return id;
     }

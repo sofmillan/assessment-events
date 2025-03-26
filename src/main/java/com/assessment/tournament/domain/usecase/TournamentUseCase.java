@@ -28,4 +28,10 @@ public class TournamentUseCase implements TournamentServicePort {
     public Tournament findById(Long id) {
         return tournamentPersistencePort.getById(id);
     }
+
+    @Override
+    public Tournament updateRemainingCapacity(Tournament tournament) {
+        tournament.setRemainingCapacity(tournament.getRemainingCapacity()-1);
+        return tournamentPersistencePort.save(tournament);
+    }
 }
