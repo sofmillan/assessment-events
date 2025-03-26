@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,31 +28,34 @@ class CategoryJpaAdapterTest {
     @InjectMocks
     private CategoryJpaAdapter categoryJpaAdapter;
 
-//    @Test
-//    void should_throwDataNotFoundException_when_categoryNotFound(){
-//        //Arrange
-//        Long nonExistentCategoryId = 5L;
-//        when(categoryRepository.findById(nonExistentCategoryId)).thenReturn(Optional.empty());
-//
-//        //Act and Assert
-//        assertThrows(DataNotFoundException.class, () -> categoryJpaAdapter.findById(nonExistentCategoryId));
-//    }
-//
-//    @Test
-//    void should_findCategoryById(){
-//        //Arrange
-//        Long categoryId = 1L;
-//        Category expectedCategory = new Category(1L, "Gold",10);
-//        CategoryEntity categoryEntity = new CategoryEntity(1L, "Gold",10);
-//
-//        when(categoryRepository.findById(categoryId)).thenReturn(Optional.of(categoryEntity));
-//        when(categoryEntityMapper.toModel(categoryEntity)).thenReturn(expectedCategory);
-//
-//        //Act
-//        Category actualCategory = categoryJpaAdapter.findById(categoryId);
-//
-//        //Assert
-//        assertEquals(expectedCategory, actualCategory);
-//
-//    }
+    @Test
+    void should_throwDataNotFoundException_when_categoryNotFound(){
+        //Arrange
+        Long nonExistentCategoryId = 5L;
+        when(categoryRepository.findById(nonExistentCategoryId)).thenReturn(Optional.empty());
+
+        //Act and Assert
+        assertThrows(DataNotFoundException.class, () -> categoryJpaAdapter.findById(nonExistentCategoryId));
+        verify(categoryRepository).findById(nonExistentCategoryId);
+    }
+
+    @Test
+    void should_findCategoryById(){
+        //Arrange
+        Long categoryId = 1L;
+        Category expectedCategory = new Category(1L, "Gold",10);
+        CategoryEntity categoryEntity = new CategoryEntity(1L, "Gold",10);
+
+        when(categoryRepository.findById(categoryId)).thenReturn(Optional.of(categoryEntity));
+        when(categoryEntityMapper.toModel(categoryEntity)).thenReturn(expectedCategory);
+
+        //Act
+        Category actualCategory = categoryJpaAdapter.findById(categoryId);
+
+        //Assert
+        assertEquals(expectedCategory, actualCategory);
+        verify(categoryRepository).findById(categoryId);
+        verify(categoryEntityMapper).toModel(categoryEntity);
+
+    }
 }

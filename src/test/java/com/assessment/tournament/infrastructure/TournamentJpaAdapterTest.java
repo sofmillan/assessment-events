@@ -55,6 +55,7 @@ class TournamentJpaAdapterTest {
 
         //Act and Assert
         assertThrows(DataNotFoundException.class, ()-> tournamentJpaAdapter.getById(nonExistentTournamentId));
+        verify(tournamentRepository).findById(nonExistentTournamentId);
     }
 
     @Test
