@@ -1,6 +1,7 @@
 package com.assessment.tournament.application.handler;
 
 import com.assessment.tournament.application.dto.TournamentRequestDto;
+import com.assessment.tournament.application.dto.TournamentResponseDto;
 import com.assessment.tournament.application.mapper.TournamentDtoMapper;
 import com.assessment.tournament.domain.api.CategoryServicePort;
 import com.assessment.tournament.domain.api.IdentityResolver;
@@ -20,12 +21,12 @@ public class TournamentHandlerImpl implements TournamentHandler{
     private final TournamentDtoMapper tournamentDtoMapper;
     private final IdentityResolver identityResolver;
     @Override
-    public void saveTournament(TournamentRequestDto tournamentRequestDto, String token) {
+    public TournamentResponseDto saveTournament(TournamentRequestDto tournamentRequestDto, String token) {
         String userId = identityResolver.getUserIdFromToken(token);
         Category category = categoryServicePort.findById(tournamentRequestDto.getCategoryId());
         Tournament tournament = tournamentDtoMapper.toModel(tournamentRequestDto);
         tournament.setCategory(category);
         tournament.setUserId(userId);
-        tournamentServicePort.save(tournament);
+        return tournamentDtoMapper.toResponseDto(tournamentServicePort.save(tournament));
     }
 }

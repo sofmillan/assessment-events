@@ -16,7 +16,8 @@ public class TournamentUseCase implements TournamentServicePort {
 
     @Override
     public Tournament save(Tournament tournament) {
-        if(tournamentPersistencePort.getByUserId(tournament.getUserId()).stream().filter(Tournament::getFree).count()>=2){
+        if(tournament.getIsFree() &&
+                tournamentPersistencePort.getByUserId(tournament.getUserId()).stream().filter(Tournament::getIsFree).count()>=2){
             throw new FreeTournamentLimitException("User cannot create more free tournaments");
         }
 
