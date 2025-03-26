@@ -1,6 +1,7 @@
 package com.assessment.tournament.domain.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Ticket {
     private Long id;

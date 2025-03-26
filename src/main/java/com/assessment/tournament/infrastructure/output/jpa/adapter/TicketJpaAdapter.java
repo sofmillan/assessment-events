@@ -22,7 +22,6 @@ public class TicketJpaAdapter implements TicketPersistencePort {
         ticketEntity.setPurchaseDate(LocalDateTime.now());
         ticketEntity.setCode(UUID.randomUUID().toString().substring(0,8));
         ticketRepository.save(ticketEntity);
-        ticketEntity.getTournament().setRemainingCapacity(ticketEntity.getTournament().getRemainingCapacity()-1);
         return ticketEntityMapper.toModel(ticketEntity);
     }
 }
