@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class TicketRequestDto {
-    @NotNull(message = "Tournament id is required")
+    @NotNull(message = "tournamentId is required")
     private Long tournamentId;
 }
