@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CategoryJpaAdapterTest {
+class CategoryJpaAdapterTest {
     @Mock
     private CategoryRepository categoryRepository;
     @Mock
