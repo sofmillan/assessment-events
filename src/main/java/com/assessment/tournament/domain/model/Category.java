@@ -1,6 +1,5 @@
 package com.assessment.tournament.domain.model;
 
-import java.util.Objects;
 
 public class Category {
     private Long id;

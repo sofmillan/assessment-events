@@ -28,11 +28,4 @@ public class TournamentRequestDto {
     @NotNull(message = "IsFree is required")
     private boolean isFree;
 
-    public boolean getFree() {
-        return isFree;
-    }
-
-    public void setFree(boolean free) {
-        isFree = free;
-    }
 }
