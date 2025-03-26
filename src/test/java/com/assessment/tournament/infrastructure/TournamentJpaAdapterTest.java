@@ -41,15 +41,15 @@ public class TournamentJpaAdapterTest {
         assertThrows(DataNotFoundException.class, ()-> tournamentJpaAdapter.getById(nonExistentTournamentId));
     }
 
-    @Test
-    void should_findTournamentById(){
-        //Arrange
-        Long tournamentId = 1L;
-        Category category = new Category(1L, "Gold",10);
-        CategoryEntity categoryEntity = new CategoryEntity(1L, "Gold",10);
-/*
-        Tournament expectedTournament = new Tournament(1L, "Sample description", "Sample name",category, LocalDate.of(2025,10,10),LocalDate.of(2025,10,20),0.0, true);
-        TournamentEntity tournamentEntity = new TournamentEntity(1L, "Sample description", "Sample name",categoryEntity, LocalDate.of(2025,10,10),LocalDate.of(2025,10,20),0.0, true);
-*/
-    }
+//    @Test
+//    void should_findTournamentById(){
+//        //Arrange
+//        Long tournamentId = 1L;
+//        Category category = new Category(1L, "Gold",10);
+//        CategoryEntity categoryEntity = new CategoryEntity(1L, "Gold",10);
+///*
+//        Tournament expectedTournament = new Tournament(1L, "Sample description", "Sample name",category, LocalDate.of(2025,10,10),LocalDate.of(2025,10,20),0.0, true);
+//        TournamentEntity tournamentEntity = new TournamentEntity(1L, "Sample description", "Sample name",categoryEntity, LocalDate.of(2025,10,10),LocalDate.of(2025,10,20),0.0, true);
+//*/
+//    }
 }
