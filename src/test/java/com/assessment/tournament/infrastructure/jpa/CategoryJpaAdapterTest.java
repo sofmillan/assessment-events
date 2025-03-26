@@ -1,4 +1,4 @@
-package com.assessment.tournament.infrastructure;
+package com.assessment.tournament.infrastructure.jpa;
 
 import com.assessment.tournament.domain.model.Category;
 import com.assessment.tournament.infrastructure.exception.DataNotFoundException;
@@ -29,7 +29,7 @@ class CategoryJpaAdapterTest {
     private CategoryJpaAdapter categoryJpaAdapter;
 
     @Test
-    void should_throwDataNotFoundException_when_categoryNotFound(){
+    void shouldThrowDataNotFoundException_whenCategoryNotFound(){
         //Arrange
         Long nonExistentCategoryId = 5L;
         when(categoryRepository.findById(nonExistentCategoryId)).thenReturn(Optional.empty());
@@ -40,7 +40,7 @@ class CategoryJpaAdapterTest {
     }
 
     @Test
-    void should_findCategoryById(){
+    void shouldFindCategoryById_whenCategoryIdExists(){
         //Arrange
         Long categoryId = 1L;
         Category expectedCategory = new Category(1L, "Gold",10);

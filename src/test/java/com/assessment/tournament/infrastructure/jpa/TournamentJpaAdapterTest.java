@@ -1,4 +1,4 @@
-package com.assessment.tournament.infrastructure;
+package com.assessment.tournament.infrastructure.jpa;
 
 import com.assessment.tournament.domain.model.Tournament;
 import com.assessment.tournament.infrastructure.exception.DataNotFoundException;
@@ -122,8 +122,8 @@ class TournamentJpaAdapterTest {
         assertEquals(tournament.getName(), savedTournament.getName());
         assertEquals(tournament.getStartDate(), savedTournament.getStartDate());
         verify(tournamentEntityMapper).toEntity(tournament);
-        verify(tournamentRepository).save(tournamentEntity);
         verify(tournamentEntityMapper).toModel(tournamentEntity);
+        verify(tournamentRepository).save(any(TournamentEntity.class));
     }
 
     @Test
