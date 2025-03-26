@@ -59,6 +59,12 @@ class TournamentUseCaseTest {
         // Assert
         assertNotNull(result);
         assertEquals(20, result.getRemainingCapacity());
+        assertEquals(tournament.getName(), result.getName());
+        assertEquals(tournament.getDescription(), result.getDescription());
+        assertEquals(tournament.getStartDate(), result.getStartDate());
+        assertEquals(tournament.getEndDate(), result.getEndDate());
+        assertEquals(tournament.getTicketPrice(), result.getTicketPrice());
+        assertEquals(tournament.getIsFree(), result.getIsFree());
         verify(tournamentPersistencePort).save(any(Tournament.class));
     }
 

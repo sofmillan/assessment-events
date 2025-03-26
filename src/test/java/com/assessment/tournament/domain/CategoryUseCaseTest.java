@@ -35,7 +35,9 @@ class CategoryUseCaseTest {
 
         // Assert
         assertNotNull(result);
-        assertEquals(expectedCategory, result);
+        assertEquals(expectedCategory.getId(), result.getId());
+        assertEquals(expectedCategory.getName(), result.getName());
+        assertEquals(expectedCategory.getCapacity(), result.getCapacity());
         verify(categoryPersistencePort).findById(categoryId);
     }
 }
