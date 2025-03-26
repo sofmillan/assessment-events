@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,6 +42,9 @@ class TournamentUseCaseTest {
         tournament.setCategory(category);
         tournament.setName("LVLY");
         tournament.setRemainingCapacity(20);
+        tournament.setDescription("This is a generic description");
+        tournament.setStartDate(LocalDate.of(2025,10,10));
+        tournament.setEndDate(LocalDate.of(2025,12,10));
     }
 
     @Test
