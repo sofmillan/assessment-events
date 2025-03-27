@@ -16,4 +16,8 @@ public class DetailedTournamentDto {
     private boolean isFree;
     private Integer remainingCapacity;
     private Integer participants;
+
+    public void setIsFree(boolean free) {
+        isFree = free;
+    }
 }

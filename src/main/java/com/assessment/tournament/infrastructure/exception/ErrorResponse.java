@@ -1,18 +1,19 @@
 package com.assessment.tournament.infrastructure.exception;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@RequiredArgsConstructor
-
+@AllArgsConstructor
+@Getter
 public class ErrorResponse {
-
-    private final LocalDateTime dateTime;
-    private final HttpStatus status;
-    private final Integer statusCode;
-    private final List<String> errorMessages;
+    private LocalDateTime dateTime;
+    private HttpStatus status;
+    private Integer statusCode;
+    private List<String> errorMessages;
 
 }

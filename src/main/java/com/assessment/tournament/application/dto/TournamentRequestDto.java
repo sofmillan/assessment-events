@@ -29,4 +29,7 @@ public class TournamentRequestDto {
     @NotNull(message = "isFree is required")
     private boolean isFree;
 
+    public boolean getIsFree() {
+        return isFree;
+    }
 }
