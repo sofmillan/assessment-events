@@ -13,7 +13,7 @@ class TournamentDtoMapperTest {
     private final TournamentDtoMapper mapper = Mappers.getMapper(TournamentDtoMapper.class);
 
     @Test
-    void getNumberOfParticipants_ShouldReturnCorrectValue() {
+    void shouldReturnCorrectNumberOfParticipantsWhenCalculated() {
         // Arrange
         Category category = new Category();
         category.setCapacity(100);

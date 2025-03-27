@@ -29,7 +29,7 @@ class CategoryJpaAdapterTest {
     private CategoryJpaAdapter categoryJpaAdapter;
 
     @Test
-    void shouldThrowDataNotFoundException_whenCategoryNotFound(){
+    void shouldThrowDataNotFoundExceptionWhenCategoryNotExists(){
         //Arrange
         Long nonExistentCategoryId = 5L;
         when(categoryRepository.findById(nonExistentCategoryId)).thenReturn(Optional.empty());
@@ -40,7 +40,7 @@ class CategoryJpaAdapterTest {
     }
 
     @Test
-    void shouldFindCategoryById_whenCategoryIdExists(){
+    void shouldFindCategoryByIdWhenCategoryIdExists(){
         //Arrange
         Long categoryId = 1L;
         Category expectedCategory = new Category(1L, "Gold",10);

@@ -48,7 +48,7 @@ class TournamentJpaAdapterTest {
     }
 
     @Test
-    void shouldThrowDataNotFoundException_whenTournamentNotFound(){
+    void shouldThrowDataNotFoundExceptionWhenTournamentNotExists(){
         //Arrange
         Long nonExistentTournamentId = 5L;
         when(tournamentRepository.findById(nonExistentTournamentId)).thenReturn(Optional.empty());
@@ -59,7 +59,7 @@ class TournamentJpaAdapterTest {
     }
 
     @Test
-    void shouldReturnTournament_whenTournamentExists(){
+    void shouldReturnTournamentWhenTournamentIdExists(){
         //Arrange
         Long existentTournamentId = 1L;
 
@@ -78,7 +78,7 @@ class TournamentJpaAdapterTest {
     }
 
     @Test
-    void shouldReturnListOfTournaments_whenTournamentsExist() {
+    void shouldReturnListOfTournamentsWhenTournamentsExist() {
         // Arrange
         TournamentEntity tournamentEntity2 = new TournamentEntity();
         tournamentEntity2.setId(2L);
@@ -107,7 +107,7 @@ class TournamentJpaAdapterTest {
     }
 
     @Test
-    void shouldReturnTournament_whenTournamentIsSavedSuccessfully() {
+    void shouldReturnTournamentWhenTournamentIsSavedSuccessfully() {
         // Arrange
         when(tournamentEntityMapper.toEntity(tournament)).thenReturn(tournamentEntity);
         when(tournamentRepository.save(tournamentEntity)).thenReturn(tournamentEntity);
@@ -127,7 +127,7 @@ class TournamentJpaAdapterTest {
     }
 
     @Test
-    void shouldReturnListOfTournaments_whenUserHasTournaments() {
+    void shouldReturnListOfTournamentsWhenUserHasTournaments() {
         // Arrange
         TournamentEntity tournamentEntity2 = new TournamentEntity();
         tournamentEntity2.setId(2L);

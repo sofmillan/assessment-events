@@ -59,7 +59,7 @@ class TicketHandlerImplTest {
     }
 
     @Test
-    void save_ShouldReturnTicketResponseDto_WhenValidRequest() {
+    void shouldSaveTicket_WhenValidRequest() {
         // Arrange
         TicketRequestDto requestDto = new TicketRequestDto();
         requestDto.setTournamentId(tournamentId);

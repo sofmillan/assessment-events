@@ -103,7 +103,7 @@ class TournamentUseCaseTest {
     }
 
     @Test
-    void shouldFindTournamentById() {
+    void shouldFindTournamentByIdWhenTournamentExists() {
         // Arrange
         Long tournamentId = 1L;
         Tournament existingTournament = new Tournament();

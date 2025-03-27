@@ -34,7 +34,7 @@ public class JwtClaimsResolver implements IdentityResolver {
         return claims.getPayload().get("sub").toString();
     }
 
-    private static PublicKey getPublicKeyFromJson() throws JsonProcessingException, NoSuchAlgorithmException, InvalidKeySpecException {
+    static PublicKey getPublicKeyFromJson() throws JsonProcessingException, NoSuchAlgorithmException, InvalidKeySpecException {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree("""
                     {
@@ -56,9 +56,7 @@ public class JwtClaimsResolver implements IdentityResolver {
     }
 
     public String extractToken(String authorizationHeader) {
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            return authorizationHeader.substring(7);
-        }
-        throw new IllegalArgumentException("Invalid Authorization header format.");
+        return authorizationHeader.substring(7);
+
     }
 }

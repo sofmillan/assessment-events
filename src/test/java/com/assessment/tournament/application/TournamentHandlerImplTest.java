@@ -62,7 +62,7 @@ class TournamentHandlerImplTest {
     }
 
     @Test
-    void saveTournament_ShouldSaveAndReturnTournamentResponse() {
+    void shouldSaveTournamentWhenValidRequest() {
         // Arrange
         Long categoryId = 1L;
         TournamentRequestDto requestDto = new TournamentRequestDto();
@@ -92,7 +92,7 @@ class TournamentHandlerImplTest {
     }
 
     @Test
-    void getTournamentsByUserId_ShouldReturnUserTournaments_WhenCreatedByMeIsTrue() {
+    void shouldReturnUserTournamentsWhenCreatedByMeIsTrue() {
         // Arrange
         List<Tournament> tournaments = List.of(tournament);
         List<TournamentResponseDto> tournamentDtos = List.of(new TournamentResponseDto());
@@ -111,7 +111,7 @@ class TournamentHandlerImplTest {
     }
 
     @Test
-    void getTournamentsByUserId_ShouldReturnAllTournaments_WhenCreatedByMeIsFalse() {
+    void shouldReturnAllTournamentsWhenCreatedByMeIsFalse() {
         // Arrange
         List<Tournament> tournaments = List.of(tournament);
         List<TournamentResponseDto> tournamentDtos = List.of(new TournamentResponseDto());
@@ -128,7 +128,7 @@ class TournamentHandlerImplTest {
     }
 
     @Test
-    void getTournamentById_ShouldReturnTournamentDetails() {
+    void ShouldReturnTournamentDetailsWhenGetTournamentById() {
         // Arrange
         Long tournamentId = 1L;
 
