@@ -8,24 +8,25 @@ import java.time.LocalDate;
 
 @Data
 public class TournamentRequestDto {
-    @NotNull(message = "Name is required")
-    @Size(min = 1, max=50, message = "Name must be between 1 and 50 characters")
+    @NotNull(message = "name is required")
+    @Size(min = 1, max=50, message = "name must be between 1 and 50 characters long")
     private String name;
 
-    @Size(min = 1, max=100, message = "Description must be between 1 and 100 characters")
+    @NotNull(message = "description is required")
+    @Size(min = 1, max=100, message = "description must be between 1 and 100 characters long")
     private String description;
 
-    @NotNull(message = "Category id is required")
+    @NotNull(message = "categoryId is required")
     private Long categoryId;
-    @NotNull(message = "Start date is required")
+    @NotNull(message = "startDate is required")
     private LocalDate startDate;
-    @NotNull(message = "End date is required")
+    @NotNull(message = "endDate is required")
     private LocalDate endDate;
 
-    @NotNull(message = "Ticket price is required")
+    @NotNull(message = "ticketPrice is required")
     private Double ticketPrice;
 
-    @NotNull(message = "IsFree is required")
+    @NotNull(message = "isFree is required")
     private boolean isFree;
 
 }
