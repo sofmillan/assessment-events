@@ -47,4 +47,10 @@ public class ControllerAdvisor {
 
         return ResponseEntity.status(400).body(errorResponse);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> internalServerError(Exception ex) {
+        ErrorResponse errorResponse = new ErrorResponse(LocalDateTime.now(), HttpStatus.INTERNAL_SERVER_ERROR, 500, List.of("An unexpected error occurred"));
+        return ResponseEntity.status(500).body(errorResponse);
+    }
 }

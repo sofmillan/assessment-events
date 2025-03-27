@@ -34,6 +34,7 @@ class TicketUseCaseTest {
         Ticket ticket = new Ticket();
         ticket.setTournament(tournament);
         ticket.setTotalPrice(105.0);
+        ticket.setUserId("1f4d8c64-9eab-4a6e-bd9b-9f2a7e3c1d7e");
 
         when(ticketPersistencePort.save(ticket)).thenReturn(ticket);
 
@@ -43,6 +44,7 @@ class TicketUseCaseTest {
         // Assert
         assertNotNull(result);
         assertEquals(105.0, result.getTotalPrice());
+        assertEquals(ticket.getUserId(), ticket.getUserId());
         verify(ticketPersistencePort).save(any(Ticket.class));
     }
 

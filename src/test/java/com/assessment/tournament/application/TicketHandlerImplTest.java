@@ -48,7 +48,7 @@ class TicketHandlerImplTest {
 
     @BeforeEach
     void setUp(){
-        token = "eyJhbGciOiJIUzI1NiIsIpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaoxN.SflKxwRJSMeKKF2QT4fwpMeJf";
+        token = "eyJhbGciOiJIUzIXVCJ9.eyJzdWIiOiIxMjM0NDkwIiwibmFtZSkpvaoxN.SflKxwRJKF2QT4fwpMeJf";
         userId = "b6f8a4c0-5d7f-4e92-8a8e-3a9b2d4c6f1e";
         tournamentId = 1L;
 
@@ -86,6 +86,7 @@ class TicketHandlerImplTest {
         assertEquals(responseDto.getTournamentName(), result.getTournamentName());
         assertNotNull(result.getCode());
         assertNotNull(result.getPurchaseDate());
+
         verify(identityResolver).getUserIdFromToken(token);
         verify(tournamentServicePort).findById(tournamentId);
         verify(ticketServicePort).save(any(Ticket.class));

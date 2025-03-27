@@ -17,15 +17,15 @@ import java.security.spec.RSAPublicKeySpec;
 import java.util.Base64;
 
 public class JwtClaimsResolver implements IdentityResolver {
-    public String getUserIdFromToken(String token)  {
+    public String getUserIdFromToken(String authorizationHeader)  {
 
         Jws<Claims> claims;
-
+        String jwtToken = extractToken(authorizationHeader);
         try {
             claims = Jwts.parser()
                     .verifyWith(getPublicKeyFromJson())
                     .build()
-                    .parseSignedClaims(token);
+                    .parseSignedClaims(jwtToken);
         } catch (JsonProcessingException | NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }
@@ -53,5 +53,12 @@ public class JwtClaimsResolver implements IdentityResolver {
         RSAPublicKeySpec publicKeySpec = new RSAPublicKeySpec(modulus, exponent);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
         return keyFactory.generatePublic(publicKeySpec);
+    }
+
+    public String extractToken(String authorizationHeader) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7);
+        }
+        throw new IllegalArgumentException("Invalid Authorization header format.");
     }
 }
